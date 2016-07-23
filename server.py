@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, request, session, jsonify
 from jinja2 import StrictUndefined
 from sqlalchemy import update
-from model import
+
 
 app = Flask(__name__)
 
