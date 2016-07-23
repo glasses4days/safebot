@@ -19,7 +19,7 @@ class User(db.Model):
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     first_name = db.Column(db.String(20), nullable=True)
     last_name = db.Column(db.String(30), nullable=True)
-    contact_num = db.Column(db.Integer(80), nullable=True)
+    contact_num = db.Column(db.Integer, nullable=True)
     nvmd_code = db.Column(db.String(3), nullable=True)
 
     def __repr__(self):
@@ -36,7 +36,7 @@ class Friend(db.Model):
     friend_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     first_name = db.Column(db.String(20), nullable=True)
     last_name = db.Column(db.String(30), nullable=True)
-    contact_num = db.Column(db.Integer(80), nullable=True)
+    contact_num = db.Column(db.Integer, nullable=True)
     nvmd_code = db.Column(db.String(3), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     
