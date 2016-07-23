@@ -59,14 +59,14 @@ class Unsafe(db.Model):
     datetime = db.Column(db.DateTime)
     geo_location = db.Column(db.Integer, autoincrement=True, primary_key=True)
     sms_sent = db.Column(db.String(100))
-
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
     user = db.relationship('User')
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return "<Unsafe unsafe_id=%s >" % (self.location_id, )
+        return "<Unsafe unsafe_id=%s datetime=%s geo_location=%s sms_sent=%s user_id=%s>" % (self.location_id, self.datetime, self.geo_location, self.sms_sent, self.user_id)
 
 
 ##############################################################################
@@ -88,4 +88,3 @@ if __name__ == "__main__":
     db.create_all()
 
 
-    
