@@ -1,51 +1,33 @@
 
-from sqlalchemy import func
-
-from model import *
+from model import connect_to_db, db, User, Friend
+from flask_sqlalchemy import SQLAlchemy
 from server import app
 
 
-def load_users():
-    """Load coaches from d.coach into database."""
+def sample_data():
+	"""create sample data"""
 
-    print "Users"
+	# In case this is run more than once, dump existing data
+	db.drop_all()
+	db.create_all()
 
-    User.query.delete()
+	# Add sample Uers
+	user1 = User(first_name='pablo', last_name='penguin', contact_num='5109266821', nvmd_code='123')
 
-    for row in open("sample_data/safebot_users.txt"):
-        row  = row.rstrip()
-        user_data = row.split(",")
-        for i in user_data:
-            user = User(first_name=first_name, last_name=last_name, contact_num=contact_num)
+	db.session.add_all([user1])
+	db.session.commit()
 
-            db.session.add(user)
+	pablo_id = User.query.filter_by(first_name='pablo').first().user_id
 
-    db.session.commit()
+	# Add sample friends
+	friend1 = Friendfirst_name='pablo', last_name='penguin', contact_num='5109266821')
 
-    print "Sample Users Seeded"
+	db.session.add_all([friend1])
+	db.session.commit()
 
+connect_to_db(app)
+print "Connected to DB."
 
-def load_friends():
-    """Load safebot friends into database."""
+sample_data()
 
-    print "Safebot Friends"
-
-    for row in open("sample_data/safebot_friends.txt")):
-        row = row.rstrip()
-        friend_data = row.split(",")
-        for i in friend_data:
-            friend = Friend(first_name=first_name, last_name=last_name, contact_num=contact_num)
-
-            db.session.add(friend)
-
-    db.session.commit()
-
-    print "Sample Friends Seeded"
-
-
-if __name__ == "__main__":
-    connect_to_db(app)
-    db.create_all()
-
-    load_users()
-    load_friends()
+print "Sample Data created"
