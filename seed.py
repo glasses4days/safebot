@@ -1,4 +1,3 @@
-"""Utility file to seed readcoach database from data in seed_data_prod/"""
 
 from sqlalchemy import func
 
