@@ -14,10 +14,10 @@ def send_unsafe_text(user_id):
     contact_numbers = friends.contact_numbers
     unsafe_instances = Unsafe.query.filter_by(user_id=user_id).all()
     max_unsafe_instance = db.session.query(func.max(Unsafe.unsafe_id)).one()
-    location = Unsafe.query.filter_by(max_unsafe_instance)
+    location = max_unsafe_instance.geolocation
 
     for num in contact_numbers:
         recipient = num
         client = TwilioRestClient(account_sid, auth_token)
-        message = client.sms.messages.create(to=recipient, from_=sender, body="I'm feeling unsafe")
+        message = client.sms.messages.create(to=recipient, from_=sender, body="I'm feeling unsafe. I am at" + location)
         print(message.sid)
