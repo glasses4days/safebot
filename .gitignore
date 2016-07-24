@@ -5,3 +5,4 @@ secrets.sh
 =======
 /env
 >>>>>>> d70083e6a66360e344c1945f4c988083eada6526
+*.DS_Store*
