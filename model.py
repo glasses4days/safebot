@@ -37,9 +37,8 @@ class Friend(db.Model):
     first_name = db.Column(db.String(20), nullable=True)
     last_name = db.Column(db.String(30), nullable=True)
     contact_num = db.Column(db.Integer, nullable=True)
-    nvmd_code = db.Column(db.String(3), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    
+
     # Define relationships
     user = db.relationship('User')
 
@@ -81,10 +80,8 @@ def connect_to_db(app, db_uri="postgresql:///safebots"):
 
 if __name__ == "__main__":
     from server import app
-    
+
     connect_to_db(app)
     print "Connected to DB."
 
     # db.create_all()
-
-
