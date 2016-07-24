@@ -28,7 +28,7 @@ SafeBot uses a number of open source projects to work properly:
  - Add Code Comments
  - Refactor the code 
  - Add New feature (Friend can reply back to the message.)
- - User can livestream a video, after certain has passed. 
+ - User can livestream a video, after certain time has passed. 
 
 License
 ----
